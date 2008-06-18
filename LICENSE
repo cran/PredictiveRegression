@@ -1,0 +1,42 @@
+Licence for the Use of the R Package "PredictiveRegression"
+© 2007, Royal Holloway, University of London
+
+1. Ownership of the Package
+
+Copyright in PredictiveRegression (the Package) is owned by Royal
+Holloway, University of London (RHUL).
+
+2. Licence
+
+Subject to the terms and conditions you are granted a non-exclusive,
+royalty-free licence by RHUL solely for the purposes of:
+
+a copying and distributing copies of the Package's source code
+b running the Package
+c making adaptations (derivative works) based on the Package
+d copying and distributing adaptations based on the Package
+
+3. Conditions
+
+a This licence must be distributed with the Package or any adaptation
+  (derivative work) of the Package.
+b The source code must be distributed with the Package or any adaptation
+  of the Package.
+c Commercial use is prohibited without the permission of the Research
+  and Enterprise Office, Royal Holloway, University of London, Egham,
+  Surrey TW20 0EX, UK.
+
+4. Limitations
+
+a This software is provided "as is", without warranty of any kind,
+  either express or implied, including but not limited to the
+  merchantability, fitness for a particular purpose, and
+  non-infringement of IP rights.  The authors and copyright holder shall
+  not be liable for any claim, damages, or other liability, whether in
+  contract, tort, or otherwise arising out of, or in connection with,
+  the software.
+b This license relates solely to the use of copyright in the Package and
+  adaptations of the Package for non-commercial purposes.  It does not
+  grant rights in any related patents, in particular, "Data
+  classification apparatus and method thereof" (published as WO0028473
+  (A1)).
