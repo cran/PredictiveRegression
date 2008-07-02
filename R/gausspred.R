@@ -6,9 +6,9 @@
 gausspred <- function(train,test,epsilons=c(0.05,0.01)) {
 
 # train is the matrix of training observations
-# each row is the vector of explanatory variables followed by the response
+#   each row is the vector of explanatory variables followed by the response
 # test is the matrix of explanatory variables for test observations
-# each row is the vector of explanatory vatiables
+#   each row is the vector of explanatory vatiables
 # epsilons is the list of significance levels to consider
 
   N <- dim(train)[1];	# number of training observations

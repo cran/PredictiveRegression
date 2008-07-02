@@ -5,9 +5,9 @@
 mvapred <- function(train,test,epsilons=c(0.05,0.01),ridge=0) {
 
 # train is the matrix of training observations
-# each row is the vector of explanatory vatiables followed by the response
+#   each row is the vector of explanatory vatiables followed by the response
 # test is the matrix of explanatory variables for test observations
-# each row is the vector of explanatory vatiables
+#   each row is the vector of explanatory vatiables
 # ridge is the ridge coefficient (usually a small positive number, such as 0.01)
 # epsilons is the list of significance levels to consider
 

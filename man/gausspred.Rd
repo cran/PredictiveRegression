@@ -5,38 +5,39 @@
 \usage{gausspred(train,test,epsilons=c(0.05,0.01))}
 
 \arguments{
-  \item{train}{Training set as a matrix of size $N\times(K+1)$.
+  \item{train}{Training set as a matrix of size \eqn{N} times \eqn{K+1}.
     Each row describes an observation.
-    Columns 1 to $K$ are the explanatory variables,
-    and column $K+1$ is the response variables.}
-  \item{test}{Test set as a matrix of size $N_2\times K$.
+    Columns \eqn{1} to \eqn{K} are the explanatory variables,
+    and column \eqn{K+1} is the response variables.}
+  \item{test}{Test set as a matrix of size \eqn{N_2}{N2} times \eqn{K}.
     Each row corresponds to an observation
     (but without the response variable).
-    Columns 1 to $K$ are the explanatory variables.}
+    Columns \eqn{1} to \eqn{K} are the explanatory variables.}
   \item{epsilons}{Vector of several significance levels.
-     Each significance level is $\epsilon\in(0,1)$.
-     The default value is $(5\%,1\%)$.}
+     Each significance level \code{epsilons}[\eqn{j}] is a number between 0 and 1.
+     The default value is (5\%,1\%).}
 }
 
 \value{The output is a list of three elements.
   \item{output[[1]]}{The matrix of lower bounds of prediction intervals.
-    Its size is $N_2\times N_{\epsilon}$,
-    where $N_2$ is the number of test observations
-    and $N_{\epsilon}$ is the number of significance levels.
-    The element \code{output[[1]]}${}_{i,j}$ of \code{output[[1]]}
-    is the lower bound $a$ of the prediction interval $[a,b]$
-    for the $i$th test observation
-    and for the $j$th significance level $\epsilon_j$
+    Its size is \eqn{N_2}{N2} times \eqn{N_{\epsilon}}{Neps},
+    where \eqn{N_2}{N2} is the number of test observations
+    and \eqn{N_{\epsilon}}{Neps} is the number of significance levels.
+    The element \code{output[[1]]}[\eqn{i},\eqn{j}] of \code{output[[1]]}
+    is the lower bound \eqn{a} of the prediction interval \eqn{[a,b]}
+    for the \eqn{i}{i-}th test observation
+    and for the \eqn{j}{j-}th significance level \code{epsilons}[\eqn{j}]
     in the vector \code{epsilons}.}
-  \item{output[[2]]}{The matrix of upper bounds $b$,
+  \item{output[[2]]}{The matrix of upper bounds \eqn{b},
     with the same structure as \code{output[[1]]}.
-    Typically $a={}$\code{output[[1]]}${}_{i,j}$
-    and $b={}$\code{output[[2]]}${}_{i,j}$ are real numbers
-    such that $a\le b$.
-    Exceptions: $a$ is allowed to be $-\infty$
-    and $b$ is allowed to be $\infty$;
-    the only case where $a>b$
-    is $a=\infty$ and $b=-\infty$ (empty prediction $[a,b]=\emptyset$).}
+    Typically \eqn{a = }\code{output[[1]]}[\eqn{i},\eqn{j}]
+    and \eqn{b = }\code{output[[2]]}[\eqn{i},\eqn{j}] are real numbers
+    such that \eqn{a\le b}{a <= b}.
+    Exceptions: \eqn{a} is allowed to be \eqn{-\infty}{-infinity}
+    and \eqn{b} is allowed to be \eqn{\infty}{infinity};
+    the only case where \eqn{a > b}
+    is \eqn{a=\infty}{a = infinity} and \eqn{b=-\infty}{b = - infinity}
+    (the empty prediction \eqn{[a,b]}).}
   \item{output[[3]]}{The termination code:
     0 = normal termination;
     1 = illegal parameters
@@ -53,11 +54,8 @@
 }
 
 \examples{
-  train <- array(0,c(4,2));
-  test <- array(0,c(3,1));
-  train[1:4,1] <- c(1,2,3,4);
-  train[1:4,2] <- c(2.01,2.99,4.01,4.99);
-  test[1:3,1] <- c(0,10,20);
+  train <- matrix(c(1,2,3,4, 2.01,2.99,4.01,4.99), nrow=4, ncol=2);
+  test <- matrix(c(0,10,20), nrow=3, ncol=1);
   output <- gausspred(train,test,c(0.05,0.2));
   print(output[[1]]);
   print(output[[2]]);

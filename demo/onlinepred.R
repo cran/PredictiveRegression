@@ -1,40 +1,29 @@
-# The demo for plotting median-accuracy and error plots
-# in the paper by Vovk et al. (Annals of Statistics, 2008).
-# It can be run using the prediction intervals
-# produced by the IID predictor (default),
-# the Gauss predictor, and the MVA predictor.
+# This program calls the IID predictor, the Gauss predictor, or the MVA predictor
+# in the on-line mode.
+# The estimated waiting time for a very portable laptop:
+# IID: about 1 min; Gauss: about 20 sec; MVA: slightly above 1 min.
 
-cat("This program calls\n");
-cat("the IID predictor, the Gauss predictor, or the MVA predictor\n");
-cat("in the on-line mode.\n");
-cat("The estimated waiting time is for a very portable laptop.\n\n");
-
-answer1 <- readline("Choose 'IID' (default), 'Gauss', or 'MVA'\n (the first letter is sufficient) ");
+answer1 <- readline("Choose 'IID' (default), 'Gauss', or 'MVA' (the first letter is sufficient) ");
 ans1 <- substr(answer1,1,1);
 if ((ans1 == "G") || (ans1 == "g")) {
-  cat("Estimated waiting time for the Gauss predictor: about 20 sec\n");
   subtitle = "for the Gauss predictor"
 } else if ((ans1 == "M") || (ans1 == "m")) {
-  cat("Estimated waiting time for the MVA predictor: slightly above 1 min\n");
   subtitle = "for the MVA predictor"
 } else {
   ans1 <- "I";
-  cat("Estimated waiting time for the IID predictor: about 1 min\n");
   subtitle = "for the IID predictor"}
 
-answer2 <- readline("Choose the 'median-accuracy' (default) or 'error' plot\n (the first letter is sufficient) ");
+answer2 <- readline("Choose the 'median-accuracy' (default) or 'error' plot (the first letter) ");
 ans2 <- substr(answer2,1,1);
 if ((ans2 == "e") || (ans2 == "E")) {
-  cat("Computing the error plot...\n");
   title <- c("Error plot at 5%, 1%, and 0.5%\n",subtitle);
 } else {
   ans2 <- "m";
-  cat("Computing the median-accuracy plot...\n");
   title <- c("Median-accuracy plot at 5%, 1%, and 0.5%\n",subtitle);}
 
 start <- Sys.time()	# timing: start
 
-# generate the arfiticial data set: start
+# generate the artificial data set: start
 N <- 600;	# number of observations
 K <- 100;	# number of explanatory variables
 XX <- array(rnorm(N*K),dim=c(N,K));	# the explanatory variables
@@ -44,7 +33,7 @@ beta[1:10,1] <- c(10,-10);
 yy <- 100 + XX %*% beta + array(rnorm(N),dim=c(N,1));	# the response variables
 dataset <- cbind(XX,yy);
 dim(dataset) <- c(N,K+1);
-# generate the arfiticial data set: end
+# generate the artificial data set: end
 
 N <- dim(dataset)[1];		# number of observations
 K <- dim(dataset)[2]-1;		# number of explanatory variables
