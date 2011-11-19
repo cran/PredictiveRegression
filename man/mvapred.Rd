@@ -2,7 +2,7 @@
 \alias{mvapred}
 \title{MVA predictor}
 \description{Prediction intervals based on the MVA model}
-\usage{output <- mvapred(train,test,epsilons=c(0.05,0.01),ridge=0)}
+\usage{mvapred(train,test,epsilons=c(0.05,0.01),ridge=0)}
 
 \arguments{
   \item{train}{Training set as a matrix of size \eqn{N} times \eqn{K+1}.
@@ -49,12 +49,12 @@
 }
 
 \references{
-  Vovk, V., Nouretdinov, I., and Gammerman, A. (2008)
+  Vovk, V., Nouretdinov, I., and Gammerman, A. (2009)
   On-line predictive linear regression.
-  \emph{Annals of Statistics} (to appear).
-  The new arXiv version (http://arxiv.org/abs/math/0511522, to appear)
-  will contain the description of this program
-  (and of the package PredictiveRegression in general).
+  \emph{Annals of Statistics} 37, 1566 - 1590.
+  The new arXiv version http://arxiv.org/abs/math/0511522 of this paper
+  contains the description of this program
+  and the algorithm that this program implements.
 }
 
 \examples{

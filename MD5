@@ -1,0 +1,10 @@
+1ac0d0935a22981c81afc79fc9e39f88 *DESCRIPTION
+ae721aa577aaab05698561109cb366e6 *LICENSE
+64d6b0cb39942cd9585774c6c10d8419 *R/gausspred.R
+d17ce6fd99a499c696178d2c20feb15f *R/iidpred.R
+58200aa70e6739f9c218aa48ef23813b *R/mvapred.R
+86ee4925f2095ffa5d139338a2619eab *demo/00Index
+20cd23081a4198e2e26e6941975fec94 *demo/onlinepred.R
+ee80ac774f8d4225b6b3413c0eaaafdb *man/gausspred.Rd
+c9a44ca24024100c483d985af55a670e *man/iidpred.Rd
+01eb8ab90f97c11f5a5181b727f24a14 *man/mvapred.Rd

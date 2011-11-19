@@ -49,16 +49,16 @@
 }
 
 \references{
-  Vovk, V., Nouretdinov, I., and Gammerman, A. (2008)
+  Vovk, V., Nouretdinov, I., and Gammerman, A. (2009)
   On-line predictive linear regression.
-  \emph{Annals of Statistics} (to appear).
-  The new arXiv version (http://arxiv.org/abs/math/0511522, to appear)
-  will contain the description of this program
-  (and of the package PredictiveRegression in general).
+  \emph{Annals of Statistics} 37, 1566 - 1590.
+  The new arXiv version http://arxiv.org/abs/math/0511522 of this paper
+  contains the description of this program
+  and the algorithm that this program implements.
 
   Vovk, V., Gammerman, A., and Shafer, G. (2005)
   \emph{Algorithmic Learning in a Random World}.
-  New York: Sprinder.
+  New York: Springer.
   This program implements the algorithm described on pages 30 - 34
   of this book.
 }

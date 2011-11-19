@@ -46,9 +46,9 @@
 }
 
 \references{
-  Vovk, V., Nouretdinov, I., and Gammerman, A. (2008)
+  Vovk, V., Nouretdinov, I., and Gammerman, A. (2009)
   On-line predictive linear regression.
-  \emph{Annals of Statistics} (to appear).
+  \emph{Annals of Statistics} 37, 1566 - 1590.
   This paper describes this standard textbook procedure
   and its properties when used in the on-line mode.
 }

@@ -1,7 +1,7 @@
 # This program calls the IID predictor, the Gauss predictor, or the MVA predictor
 # in the on-line mode.
-# The estimated waiting time for a very portable laptop:
-# IID: about 1 min; Gauss: about 20 sec; MVA: slightly above 1 min.
+# The estimated waiting time for a mid-range laptop in 2011:
+# IID: about 20 sec; Gauss: below 10 sec; MVA: about 20 sec.
 
 answer1 <- readline("Choose 'IID' (default), 'Gauss', or 'MVA' (the first letter is sufficient) ");
 ans1 <- substr(answer1,1,1);
@@ -21,13 +21,13 @@ if ((ans2 == "e") || (ans2 == "E")) {
   ans2 <- "m";
   title <- c("Median-accuracy plot at 5%, 1%, and 0.5%\n",subtitle);}
 
-start <- Sys.time()	# timing: start
+start <- Sys.time()   # timing: start
 
 # generate the artificial data set: start
-N <- 600;	# number of observations
-K <- 100;	# number of explanatory variables
-XX <- array(rnorm(N*K),dim=c(N,K));	# the explanatory variables
-beta <- array(0,dim=c(K,1));		# initializing the coefficients
+N <- 600;  # number of observations
+K <- 100;  # number of explanatory variables
+XX <- array(rnorm(N*K),dim=c(N,K));  # the explanatory variables
+beta <- array(0,dim=c(K,1));         # initializing the coefficients
 beta[1:K,1] <- c(1,-1);
 beta[1:10,1] <- c(10,-10);
 yy <- 100 + XX %*% beta + array(rnorm(N),dim=c(N,1));	# the response variables
@@ -35,44 +35,44 @@ dataset <- cbind(XX,yy);
 dim(dataset) <- c(N,K+1);
 # generate the artificial data set: end
 
-N <- dim(dataset)[1];		# number of observations
-K <- dim(dataset)[2]-1;		# number of explanatory variables
-K0 <- 10;			# the first K0 attributes are regarded as more important
-epsilons <- c(0.05,0.01,0.005);	# the significance levels to be considered
+N <- dim(dataset)[1];           # number of observations
+K <- dim(dataset)[2]-1;         # number of explanatory variables
+K0 <- 10;                       # the first K0 attributes are regarded as more important
+epsilons <- c(0.05,0.01,0.005); # the significance levels to be considered
 
 # initializing err, up, and low with the values suitable for n=1 in the main loop
 up <- array(Inf,c(N,length(epsilons)));
 low <- array(-Inf,c(N,length(epsilons)));
 err <- array(0,c(N,length(epsilons)));
 
-for(n in 2:N) {		# main loop: start
+for(n in 2:N) {     # main loop: start
 
-  Kdagger <- ifelse(n<K+3,K0,K);	# taking into account
-					# only the important explanatory variables
-  if ((ans1 == "G") || (ans1 == "g"))	# except for the Gauss predictor
-    Kdagger <- K;			# (see the paper, Remark 2)
+  Kdagger <- ifelse(n<K+3,K0,K);      # taking into account
+                                      # only the important explanatory variables
+  if ((ans1 == "G") || (ans1 == "g")) # except for the Gauss predictor
+    Kdagger <- K;                     # (see the paper, Remark 2)
 
-  train <- array(0,dim=c(n-1,Kdagger+1));			# preparing the training set: start
+  train <- array(0,dim=c(n-1,Kdagger+1));           # preparing the training set: start
   train[1:(n-1),1:Kdagger] <- dataset[1:(n-1),1:Kdagger];
-  train[1:(n-1),Kdagger+1] <- dataset[1:(n-1),K+1];		# preparing the training set: end
-  test <- array(0,dim=c(1,Kdagger));				# preparing the test set: start
+  train[1:(n-1),Kdagger+1] <- dataset[1:(n-1),K+1]; # preparing the training set: end
+  test <- array(0,dim=c(1,Kdagger));                # preparing the test set: start
   test <- dataset[n,1:Kdagger,drop=FALSE];
-  test_response <- dataset[n,K+1];				# preparing the test set: end
+  test_response <- dataset[n,K+1];                  # preparing the test set: end
 
   if (ans1 == "I") {
-    output <- iidpred(train,test,epsilons,0.01); }	# using the IID predictor
+    output <- iidpred(train,test,epsilons,0.01); } # using the IID predictor
   if ((ans1 == "G") || (ans1 == "g")) {
-   output <- gausspred(train,test,epsilons); }		# using the Gauss predictor
+   output <- gausspred(train,test,epsilons); }     # using the Gauss predictor
   if ((ans1 == "M") || (ans1 == "m")) {
-    output <- mvapred(train,test,epsilons,0.01); }	# using the MVA predictor
+    output <- mvapred(train,test,epsilons,0.01); } # using the MVA predictor
 
   low[n,] <- output[[1]];
   up[n,] <- output[[2]];
   for (eps_index in 1:length(epsilons))
     err[n,eps_index] <- ifelse((low[n,eps_index]<=test_response)&&(test_response<=up[n,eps_index]),0,1);
-}				# main loop: end
+}                   # main loop: end
 
-width <- up-low;		# dimension: c(N,length(epsilons))
+width <- up-low;  # dimension: c(N,length(epsilons))
 Err <- Med <- array(0,c(N,length(epsilons)));
 for(n in 1:N) {
 for (eps_index in 1:length(epsilons)) {
@@ -91,5 +91,5 @@ if ((ans2 == "e") || (ans2 == "E")) {
     xlab="observations",ylab="cumulative errors");
   for (eps_index in 2:length(epsilons)) lines(1:N,Err[1:N,eps_index]);}
 
-end <- Sys.time()	# timing: end
+end <- Sys.time()   # timing: end
 cat("Time elapsed:", difftime(end,start,units="secs"), "seconds\n")
