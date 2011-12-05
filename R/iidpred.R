@@ -112,7 +112,7 @@ iidpred <- function(train,test,epsilons=c(0.05,0.01),ridge=0) {
             }
             sizeP <- sizeP+1;
           } else {                # the lines a+by are horizontal
-            if (A[n] > A[N+1]) {
+            if (abs(A[n]) >= abs(A[N+1])) {
               L <- L+1;
               R <- R+1;
             }
@@ -160,7 +160,7 @@ iidpred <- function(train,test,epsilons=c(0.05,0.01),ridge=0) {
       }
     }                                       # the epsilons loop for the lower bounds: end
 
-    p <- 0;	# current p-value
+    p <- 0;     # current p-value
     P_reached <- sizeP;
     for (eps_index in 1:length(epsilons)) { # the epsilons loop for the upper bounds: start
       eps_real_index <- eps_order[eps_index];
